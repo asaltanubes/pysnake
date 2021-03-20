@@ -9,9 +9,10 @@ window = pygame.display.set_mode((750, 750))
 
 clock = pygame.time.Clock()
 
-Game.cols = 7
+Game.cols = 14
+Game.rows = 14
 sn = snake.Snake((5, 2))
-sn.tail = [snake.Snake_part((500, 500)) for i in range(5)]
+sn.tail = [snake.Snake_part((-1, -1)) for i in range(5)]
 tick = 0
 while True:
     events = pygame.event.get()

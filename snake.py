@@ -38,7 +38,7 @@ class Snake_part:
         window = pygame.display.get_surface()
         pygame.draw.rect(window, (0, 255, 0),
                 [self.pos[0] * Game.x_spacing, self.pos[1] * Game.y_spacing,
-                Game.x_spacing, Game.y_spacing])
+                Game.x_spacing+1, Game.y_spacing+1])
 
 class Snake_head:
     def __init__(self, pos, looking_at = [-1, 0]):
@@ -54,7 +54,7 @@ class Snake_head:
         abs_pos = [self.pos[0] * Game.x_spacing, self.pos[1] * Game.y_spacing]
          # Head center
         pygame.draw.rect(window, (0, 255, 0),
-                        [*abs_pos, Game.x_spacing, Game.y_spacing])
+                        [*abs_pos, Game.x_spacing+1, Game.y_spacing+1])
 
         # Eyes
         eye_rect = pygame.Rect(0, 0, Game.x_spacing/10, Game.y_spacing/10)

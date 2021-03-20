@@ -1,8 +1,9 @@
 from game import Game
 import pygame
 from copy import copy
+from food import Food
 
-class Snake:
+class Snake_class:
     def __init__(self, pos):
         self.head = Snake_head(pos)
         self.tail = []
@@ -17,6 +18,10 @@ class Snake:
         if dir != anti_direction:
             self.head.looking_at = dir
 
+    @property
+    def tail_pos(self):
+        return [i.pos for i in self.tail]
+
     def update(self):
         for i, p in sorted(enumerate(self.tail), reverse = True):
             if i != 0:
@@ -25,12 +30,17 @@ class Snake:
                 p.pos = copy(self.head.pos)
         self.head.update()
 
+        if self.head.pos == Food.pos:
+            self.tail.append(Snake_part())
+            Food.place_again(self)
+
+
     def draw(self):
         [part.draw() for part in self.tail]
         self.head.draw()
 
 class Snake_part:
-    def __init__(self, pos):
+    def __init__(self, pos = (-1, -1)):
         self.pos = list(pos)
 
 
@@ -48,6 +58,14 @@ class Snake_head:
     def update(self):
         self.pos[0] += self.looking_at[0]
         self.pos[1] += self.looking_at[1]
+        if self.pos[0] < 0:
+            self.pos[0] = Game.cols - 1
+        elif self.pos[0] >= Game.cols:
+            self.pos[0] = 0
+        if self.pos[1] < 0:
+            self.pos[1] = Game.rows - 1
+        elif self.pos[1] >= Game.rows:
+            self.pos[1] = 0
 
     def draw(self):
         window = pygame.display.get_surface()
@@ -85,3 +103,5 @@ class Snake_head:
             pygame.draw.rect(window, (0, 0, 0), eye_rect.move(-eye_moving[0], eye_moving[1]))
             # Right eye
             pygame.draw.rect(window, (0, 0, 0), eye_rect.move(-eye_moving[0], -eye_moving[1]))
+
+Snake = Snake_class((Game.cols//2, Game.rows//2))

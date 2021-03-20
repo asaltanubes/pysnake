@@ -16,6 +16,10 @@ class Main_game:
         # window height/rows
         return pygame.display.get_window_size()[1]/self.rows
 
+    @property
+    def grid_area(self):
+        return self.cols * self.rows
+
     def draw_grid(self):
         window = pygame.display.get_surface()
         width, height = window.get_size()

@@ -18,7 +18,7 @@ def wait_reset():
     pygame.display.update()
     pygame.time.delay(500)
     # Evita que las teclas pulsadas durante la pausa se activen de golpe al reiniciar
-    pygame.event.pump()
+    pygame.event.get()
 
 
 def render():
@@ -34,7 +34,6 @@ clock = pygame.time.Clock()
 reset()
 tick = 0
 while True:
-    events = pygame.event.get()
 
     grid_area = Game.grid_area
     grid_percent =  (grid_area - len(sn.tail))/(grid_area)
@@ -45,7 +44,7 @@ while True:
     render()
     if len(sn.tail) + 1 == Game.cols*Game.rows or sn.head.pos in sn.tail_pos:
         wait_reset()
-    for event in events:
+    for event in pygame.event.get():
         if event.type == KEYDOWN:
             # "Vector" entre la cabeza y la cola justo detras de esta, no se mira hacia ella porque sería instakill
             if len(sn.tail) > 0:
@@ -76,8 +75,6 @@ while True:
         elif event.type == QUIT:
             pygame.quit()
             quit()
-
-
 
     pygame.display.update()
     clock.tick(60)

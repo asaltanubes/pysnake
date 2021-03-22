@@ -51,7 +51,7 @@ class Snake_part:
                 Game.x_spacing+1, Game.y_spacing+1])
 
 class Snake_head:
-    def __init__(self, pos, looking_at = [-1, 0]):
+    def __init__(self, pos, looking_at = [0, -1]):
         self.pos = list(pos)
         self.looking_at = list(looking_at)
 

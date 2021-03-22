@@ -39,7 +39,7 @@ while True:
     grid_area = Game.grid_area
     grid_percent =  (grid_area - len(sn.tail))/(grid_area)
     game_wait = max(int(10 * (grid_percent)**2), 5)
-    if tick % 30 == 0:
+    if tick % game_wait == 0:
         sn.update()
 
     render()

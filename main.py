@@ -55,7 +55,6 @@ while True:
                     dont_look_at[0] = int((-dont_look_at[0])/abs(dont_look_at[0]))
                 elif dont_look_at[1] != 0 and not dont_look_at[1] in [1, -1]:
                     dont_look_at[1] = int((-dont_look_at[1])/abs(dont_look_at[1]))
-                print(dont_look_at)
             else:
                 dont_look_at = None
             if event.key == K_UP:

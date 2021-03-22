@@ -18,7 +18,7 @@ def wait_reset():
     pygame.display.update()
     pygame.time.delay(500)
     # Evita que las teclas pulsadas durante la pausa se activen de golpe al reiniciar
-    pygame.event.get()
+    pygame.event.pump()
 
 
 def render():

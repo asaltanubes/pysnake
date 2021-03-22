@@ -50,6 +50,12 @@ while True:
             # "Vector" entre la cabeza y la cola justo detras de esta, no se mira hacia ella porque sería instakill
             if len(sn.tail) > 0:
                 dont_look_at = [sn.tail[0].pos[i] - sn.head.pos[i] for i in range(2)]
+                # Si el vector tiene algun valor mayor distinto de 0 mayor que 1 o menor que -1 es porque ha atravesado una pared y entonces hay que cambiar el signo de el vector y normalizarlo
+                if dont_look_at[0] != 0 and not dont_look_at[0] in [1, -1]:
+                    dont_look_at[0] = int((-dont_look_at[0])/abs(dont_look_at[0]))
+                elif dont_look_at[1] != 0 and not dont_look_at[1] in [1, -1]:
+                    dont_look_at[1] = int((-dont_look_at[1])/abs(dont_look_at[1]))
+                print(dont_look_at)
             else:
                 dont_look_at = None
             if event.key == K_UP:
